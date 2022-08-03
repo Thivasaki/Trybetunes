@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
+import Loading from '../components/Loading';
 
 class Album extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       musics: [],
+      isLoading: false,
     };
   }
 
@@ -19,7 +21,10 @@ class Album extends React.Component {
   }
 
   render() {
-    const { musics } = this.state;
+    const { musics, isLoading } = this.state;
+    if (isLoading === true) {
+      return (<Loading />);
+    }
     return (
       <div data-testid="page-album">
         <Header />
